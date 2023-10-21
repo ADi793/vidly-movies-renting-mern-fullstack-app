@@ -8,7 +8,7 @@ const rentalSchema = new mongoose.Schema({
       name: {
         type: String,
         trim: true,
-        minLength: 5,
+        minLength: 3,
         maxLength: 55,
         required: true,
       },
@@ -32,7 +32,7 @@ const rentalSchema = new mongoose.Schema({
       title: {
         type: String,
         trim: true,
-        minLength: 5,
+        minLength: 3,
         maxLength: 255,
         required: true,
       },

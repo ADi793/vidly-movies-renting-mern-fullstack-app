@@ -24,13 +24,16 @@ class MovieForm extends Form {
   async populateMovie() {
     try {
       const movieId = this.props.match.params.id;
-      if (movieId === 'new') return;
-  
+      if (movieId === "new") return;
+
       const { data: movie } = await getMovie(movieId);
-      this.setState({ data: this.mapToViewModel(movie)})
+      this.setState({ data: this.mapToViewModel(movie) });
     } catch (ex) {
-      if (ex.response && (ex.response.status === 404 || ex.response.status === 400))
-         this.props.history.push('/not-found');
+      if (
+        ex.response &&
+        (ex.response.status === 404 || ex.response.status === 400)
+      )
+        this.props.history.push("/not-found");
     }
   }
 
@@ -40,18 +43,18 @@ class MovieForm extends Form {
   }
 
   mapToViewModel(movie) {
-      return {
-        _id: movie._id,
-        title: movie.title,
-        genreId: movie.genre._id,
-        numberInStock: movie.numberInStock,
-        dailyRentalRate: movie.dailyRentalRate,
-      }
+    return {
+      _id: movie._id,
+      title: movie.title,
+      genreId: movie.genre._id,
+      numberInStock: movie.numberInStock,
+      dailyRentalRate: movie.dailyRentalRate,
+    };
   }
 
   schema = {
     _id: Joi.string(),
-    title: Joi.string().required().label("Title"),
+    title: Joi.string().min(3).max(255).required().label("Title"),
     genreId: Joi.string().required().label("Genre"),
     numberInStock: Joi.number()
       .required()

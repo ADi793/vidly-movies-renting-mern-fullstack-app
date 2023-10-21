@@ -1,9 +1,10 @@
 {
-  "name": "vidlybackend",
+  "name": "vidly",
   "version": "1.0.0",
   "description": "An imaginary movie renting service.",
   "main": "app.js",
   "scripts": {
+    "dev": "nodemon app.js",
     "start": "node app.js",
     "test": "jest --watchAll --verbose --testEnvironment node"
   },

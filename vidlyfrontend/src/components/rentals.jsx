@@ -13,7 +13,7 @@ class Rentals extends Component {
     rentals: [],
     pageSize: 4,
     currentPage: 1,
-    searchQuery: '',
+    searchQuery: "",
     sortColumn: { path: "customer.name", order: "asc" },
   };
 
@@ -31,18 +31,24 @@ class Rentals extends Component {
     this.setState({ currentPage: page });
   };
 
-  handleSearch = searchQuery => {
-    this.setState({ searchQuery, currentPage: 1 })
-  }
+  handleSearch = (searchQuery) => {
+    this.setState({ searchQuery, currentPage: 1 });
+  };
 
   render() {
-    const { rentals: allRentals, sortColumn, pageSize, currentPage, searchQuery } = this.state;
+    const {
+      rentals: allRentals,
+      sortColumn,
+      pageSize,
+      currentPage,
+      searchQuery,
+    } = this.state;
 
     let fileredRentals = allRentals;
     if (searchQuery)
-    fileredRentals = fileredRentals.filter((r) =>
-      r.customer.name.toLowerCase().startsWith(searchQuery.toLowerCase())
-    );
+      fileredRentals = fileredRentals.filter((r) =>
+        r.customer.name.toLowerCase().startsWith(searchQuery.toLowerCase())
+      );
 
     const sortedRentals = _.orderBy(
       fileredRentals,
